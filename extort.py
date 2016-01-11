@@ -136,20 +136,21 @@ def main():
 			else:
 				textpath=where+"/"+artist+" "+title+" ("+album+").txt"
 
-			text=file(textpath, "wb")
-			# text.write("\xef\xbb\xbf")	# UTF-8 BOM
-			text.write("\xef\xbb\xbf"+lyrics.encode("utf-8"))
-			text.close()
+			# "\xef\xbb\xbf": UTF-8 BOM
+			with open(textpath, "wb") as text:
+				text.write("\xef\xbb\xbf")
+				text.write(lyrics.encode("utf-8"))
 
 		# write cover art file
 		if len(covers)>0:
 			for i in range(len(covers)):
 				covrpath="./Covers/"+album+" ("+hashes[i]+")."+pixtypes[i]
-				pix=file(covrpath, "wb")
-				pix.write(covers[i])
-				pix.close()
+				if not os.path.isfile(covrpath):
+					with open(covrpath, "wb") as pix:
+						pix.write(covers[i])
 
 		print string
+	return True
 
 
 if __name__ == '__main__':
