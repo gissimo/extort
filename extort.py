@@ -1,11 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
 # encoding: utf-8
 
 """
 extort.py
 
 Created by Giorgio Stampa on 2009-03-13.
-Copyright (c) 2009-2014 . All rights reserved.
 """
 
 import sys
